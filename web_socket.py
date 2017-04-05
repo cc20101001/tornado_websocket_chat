@@ -1,10 +1,11 @@
-#coding=utf-8
+# coding=utf-8
 import functools
 import tornado.web
 import tornado.websocket
 import tornado.httpserver
 import tornado.ioloop
 import hashlib
+
 
 class Single(object):
 
@@ -89,7 +90,8 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
         def wrapper(self):
             self._print_socket_info()
             cookies_hash_id, brower_hash_id = self._get_hash_id()
-            self.mediator.register_people(cookies_hash_id, brower_hash_id, self)
+            self.mediator.register_people(
+                cookies_hash_id, brower_hash_id, self)
             self.register_mediator(self.mediator)
             func(self)
         return wrapper
@@ -100,7 +102,6 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
             self.mediator.release_people(cookies_hash_id, brower_hash_id)
             func(self)
         return wrapper
-
 
     @_register_mediator
     def open(self):
