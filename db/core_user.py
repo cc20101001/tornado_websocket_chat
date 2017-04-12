@@ -2,7 +2,7 @@
 __author__ = "hbw"
 
 from db_base import BaseDB, Base
-from sqlalchemy import Column, String, Integer
+from sqlalchemy import Column, String, Integer, Float, DateTime
 
 
 class User(Base, BaseDB):
@@ -10,7 +10,7 @@ class User(Base, BaseDB):
     __tablename__ = 'user'
 
     id = Column(Integer, primary_key=True)
-    wx_num = Column(String(40))     #微信号
+    wx_num = Column(String(40))     # 微信号
     name = Column(String(40))       # 个人姓名
     password = Column(String(40))   # 密码
     phone_num = Column(String(40))  # 手机号
@@ -21,6 +21,10 @@ class User(Base, BaseDB):
     is_vip = Column(String(40))   # 不是 0, 是 1
     vip_point = Column(Integer)     # 会员积分
     head_pic_id = Column(Integer)   # 头像图片id号
+    balance = Column(Float)       # 用户余额
+    register_time = Colume(DateTime)    # 用户注册时间
+    login_time = Colume(DateTime)       # 上次登录时间
+
 
     @property
     def json(self):

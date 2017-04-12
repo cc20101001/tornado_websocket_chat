@@ -2,12 +2,13 @@
 __author__ = "hbw"
 
 from db_base import BaseDB, Base
-from sqlalchemy import Column, String, Integer, create_engine, Table
+from sqlalchemy import Column, String, Integer, create_engine, Table, DateTime
 
 
 class Chain(Base, BaseDB):
     id = Column(Integer, primary_key=True)  # 酒店连锁id
     group_name = Column(String(40))     # 酒店集团名
+    register_time = Colume(DateTime)       # 注册时间
 
 
 class Hotel(Base, BaseDB):
@@ -20,6 +21,7 @@ class Hotel(Base, BaseDB):
     address = Column(String(40))    # 酒店地址
     manager_name = Column(String(40))   # 酒店超级管理者姓名
     chain_id = Column(Integer)      # 酒店连锁id
+    register_time = Colume(DateTime)       # 注册时间
 
     @property
     def json(self):
